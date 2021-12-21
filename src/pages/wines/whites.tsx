@@ -4,7 +4,7 @@ import {Wine} from "../../types/Wine";
 
 
 const WineWhites: NextPage = () => {
-  const name = 'sparkling';
+  const name = 'whites';
   const { data, error } = useWineData(name)
 
   if(error) return <div>Failed to Loading...</div>

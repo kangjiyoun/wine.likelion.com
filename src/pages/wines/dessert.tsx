@@ -1,11 +1,31 @@
 import type { NextPage } from "next";
+import { useWineData } from "../../hooks/useWineData";
+import {Wine} from "../../types/Wine";
 
-const wineDessert : NextPage = () => {
+
+const WineDessert: NextPage = () => {
+  const name = 'dessert';
+  const { data, error } = useWineData(name)
+
+  if(error) return <div>Failed to Loading...</div>
+  if(!data) return <div>...Loading</div>
+
   return (
     <div>
-        dessert
+      <h1>Wine</h1>
+      <main>
+      {data.map((wineData: Wine)=>{
+          const {id, wine, winery} = wineData;
+          return (
+            <div key={`dessert-wine-list-${id}`}>
+              <h1>{wine}</h1>
+              <p>{winery}</p>
+            </div>
+          )
+        })}
+      </main>
     </div>
   )
 }
 
-export default wineDessert;
+export default WineDessert;
